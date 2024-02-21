@@ -1,0 +1,6 @@
+/home/onitsh2/public_html/apostolicwork.onitsha-archdiocese.org
+
+php /home/onitsh2/public_html/apostolicwork.onitsha-archdiocese.org/artisan queue:work
+
+
+cd /home/onitsh2/public_html/apostolicwork.onitsha-archdiocese.org && php artisan queue:work
