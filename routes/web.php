@@ -53,6 +53,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
         Route::get('edit-book/edit/{book:slug}', 'edit')->name('admin.book.edit');
         Route::get('edit-book/show/{book:slug}', 'show')->name('admin.book.show');
         Route::post('edit-book/update/{book:slug}', 'update')->name('admin.book.update');
+        Route::get('edit-book/delete/{book:slug}', 'destroy')->name('admin.book.destroy');
+
     });
 });
 

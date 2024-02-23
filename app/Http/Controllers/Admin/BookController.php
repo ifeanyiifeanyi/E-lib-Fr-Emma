@@ -150,11 +150,11 @@ class BookController extends Controller
 
         if ($request->hasFile('thumbnail')) {
             $old_thumbnail = $book->thumbnail;
-        
+
             if (!empty($old_thumbnail) && file_exists(public_path($old_thumbnail))) {
                 unlink(public_path($old_thumbnail));
             }
-        
+
             $thumbnail = $request->file('thumbnail');
             $thumbnailName = time() . '_' . $thumbnail->getClientOriginalName();
             $thumbnail->move(public_path('thumbnail_pdf'), $thumbnailName);
@@ -192,8 +192,20 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $slug)
     {
-        //
+        $book = Book::where('slug', $slug)->first();
+
+        if($book->delete()){
+            if (!empty($book->thumbnail) && file_exists(public_path($book->thumbnail))) {
+                unlink(public_path($book->thumbnail));
+            }
+        }
+        $notification = array(
+            'message' => 'Book Deleted Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.book.view')->with($notification);
     }
 }

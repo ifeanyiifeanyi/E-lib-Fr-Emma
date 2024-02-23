@@ -26,8 +26,8 @@
                             <thead>
                                 <tr>
                                     <th style="width: 25px">s/n</th>
-                                    <th style="width: 125px">title</th>
-                                    <th style="width: 125px">isbn</th>
+                                    <th style="width: 125px">Title</th>
+                                    <th style="width: 125px">ISBN</th>
                                     <th style="width: 25px !important">Actions</th>
                                 </tr>
                             </thead>
@@ -46,7 +46,7 @@
                                             <a href="{{ route('admin.book.edit', ['book' => $book->slug]) }}" class="btn btn-info">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="" class="btn btn-danger">
+                                            <a onclick="return confirm('Are you sure ?')" href="{{ route('admin.book.destroy', ['book' => $book->slug]) }}" class="btn btn-danger">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>

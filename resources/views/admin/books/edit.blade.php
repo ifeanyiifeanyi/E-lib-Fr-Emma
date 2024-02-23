@@ -320,11 +320,9 @@
                                     <div class="form-group">
                                         <label for="status">Select Status <small class="text-info italic">Current Status: ({{ ($book->status == 'active') ? 'Active' : 'Draft' }})</small></label>
                                         <select class="form-control" name="status" id="status">
-                                            @if ($book->status == 'active')
+                                            <option value="" disabled selected>Select Book Status</option>
                                             <option value="draft">Draft</option>
-                                            @else
                                             <option value="active">Active</option>
-                                            @endif
                                         </select>
                                     </div>
                                 </div>
