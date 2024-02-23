@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ActivationCodeController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -55,6 +56,13 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
         Route::post('edit-book/update/{book:slug}', 'update')->name('admin.book.update');
         Route::get('edit-book/delete/{book:slug}', 'destroy')->name('admin.book.destroy');
 
+    });
+
+    Route::controller(ActivationCodeController::class)->group(function(){
+        Route::get('manage-activation-code', 'index')->name('admin.activationCode.view');
+        Route::get('create-new-code', 'create')->name('admin.activationCode.create');
+        Route::post('create-new-code/store', 'store')->name('admin.activationCode.store');
+        Route::get('create-new-code/delete/{code:serial_number}', 'destroy')->name('admin.activationCode.delete');
     });
 });
 
