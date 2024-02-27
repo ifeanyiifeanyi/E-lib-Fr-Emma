@@ -76,7 +76,7 @@
                             @endif
 
                             @if ($user->pass_code == "null")
-                            <a href="#" class="btn btn-info"><b>Active Code for User Account</b></a>
+                            <a href="{{ route('admin.members.setCode', ['member' => $user]) }}" class="btn btn-info"><b>Active Code for User Account</b></a>
                             @endif
                         </div>
 

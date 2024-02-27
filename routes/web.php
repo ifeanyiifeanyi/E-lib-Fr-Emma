@@ -73,6 +73,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
         Route::get('members/{member:username}/verify', 'verify')->name('admin.members.verify');
         Route::get('members/{member:username}/deactivate', 'deactivate')->name('admin.members.deactivate');
         Route::get('members/{member:username}/set-code', 'setCode')->name('admin.members.setCode');
+        Route::post('members/StoreMangedCode', 'StoreMangedCode')->name('admin.members.StoreMangedCode');
 
 
         Route::get('members/{member:username}/delete', 'destroy')->name('admin.members.delete');

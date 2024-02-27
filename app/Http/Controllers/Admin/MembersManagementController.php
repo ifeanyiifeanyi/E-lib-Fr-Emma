@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ActivatedCode;
+use App\Models\ActivationCode;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -46,6 +48,49 @@ class MembersManagementController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+
+
+    public function setCode($username){
+        $user = User::where('username', $username)->first();
+        $codes = ActivationCode::where('status', 'inactive')->inRandomOrder()->limit(5)->get();
+        return view('admin.members.ActivateCodeForUser', compact('user', 'codes'));
+    }
+
+
+    public function StoreMangedCode(Request $request){
+        $user = User::where('id', $request->userId)->first();
+        // $code = ActivationCode::where('code', $request->code)->where('status','inactive')->first();
+        $code = ActivationCode::whereCode($request->code)->inactive()->first();
+        // dd($code);
+
+        // update activation code status
+        $code->status = 'activated';
+        $code->save();
+
+
+        // update user columns associated with the activation code
+        $user->pass_code = $code->code;
+        $user->pass_code_used = (int)$user->pass_code_used + 1;
+        $user->save();
+
+        $managedCode = new ActivatedCode();
+        $managedCode->user_id = $user->id;
+        $managedCode->code_id = $code->id;
+        $managedCode->activated_at = Carbon::now();
+        $managedCode->expires_at = Carbon::now()->addYear();
+        $managedCode->save();
+        $notification = array(
+            'message' => 'User Account Has Been verified!!',
+            'alert-type' => 'success'
+        );
+
+
+        return redirect()->back()->with($notification);
+
+    }
+
+
 
     public function destroy($username){
          User::where('username', $username)->delete();

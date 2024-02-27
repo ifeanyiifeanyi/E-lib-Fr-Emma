@@ -40,7 +40,7 @@
                                         <td>{{ $code->code }}</td>
                                         <td>{{ $code->serial_code }}</td>
                                         <td>
-                                            @if($code->status == 'active')
+                                            @if($code->status === 'activated')
                                             <span class="alert alert-success">Active</span>
                                             @else
                                             <span class="alert alert-secondary">Inactive</span>

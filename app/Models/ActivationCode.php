@@ -13,4 +13,8 @@ class ActivationCode extends Model
     {
         return $this->hasMany(ActivatedCode::class, 'code_id');
     }
+
+    public function scopeInactive($query) {
+        return $query->where('status', 'inactive');
+    }
 }
