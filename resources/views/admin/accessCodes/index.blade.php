@@ -59,7 +59,7 @@
                                         </td>
                                     </tr>
                                 @empty
-
+                                <p class="alert alert-danger text-center">Not Available</p>
                                 @endforelse
                             </tbody>
 

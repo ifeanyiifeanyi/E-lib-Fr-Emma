@@ -97,7 +97,14 @@ $route = Route::current()->getName();
                     </ul>
                 </li>
 
-
+                <li class="nav-item {{ $route == 'admin.members.view' ? 'active shadow' : '' }}">
+                    <a href="{{ route('admin.members.view') }}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Manage Members
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item {{ $route == 'admin.category.index' ? 'active shadow' : '' }}">
                     <a href="{{ route('admin.category.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-briefcase"></i>
@@ -127,6 +134,16 @@ $route = Route::current()->getName();
                         <i class="nav-icon fas fa-backspace"></i>
                         <p>
                             Logout
+                        </p>
+                    </a>
+                </li>
+
+
+                <li style="border: 1px solid teal" class="nav-item mb-3 mt-3 {{ $route == 'admin.profile.view' ? 'active' : '' }}">
+                    <a href="{{ route('admin.profile.view') }}" class="nav-link">
+                        <i class="nav-icon fas fa-briefcase"></i>
+                        <p>
+                            Admin Profile
                         </p>
                     </a>
                 </li>

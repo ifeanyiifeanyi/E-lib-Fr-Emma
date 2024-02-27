@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\ActivationCodeController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\MembersManagementController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Member\DashboardController as MemberDashboardController;
@@ -63,6 +65,25 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
         Route::get('create-new-code', 'create')->name('admin.activationCode.create');
         Route::post('create-new-code/store', 'store')->name('admin.activationCode.store');
         Route::get('create-new-code/delete/{code:serial_number}', 'destroy')->name('admin.activationCode.delete');
+    });
+
+    Route::controller(MembersManagementController::class)->group(function(){
+        Route::get('members', 'index')->name('admin.members.view');
+        Route::get('members/{member:username}', 'show')->name('admin.members.show');
+        Route::get('members/{member:username}/verify', 'verify')->name('admin.members.verify');
+        Route::get('members/{member:username}/deactivate', 'deactivate')->name('admin.members.deactivate');
+        Route::get('members/{member:username}/set-code', 'setCode')->name('admin.members.setCode');
+
+
+        Route::get('members/{member:username}/delete', 'destroy')->name('admin.members.delete');
+    });
+
+
+    Route::controller(AdminProfileController::class)->group(function(){
+        Route::get('profile', 'index')->name('admin.profile.view');
+        Route::get('profile/reset-password', 'create')->name('admin.profile.updatePassword');
+        Route::post('profile/update-password', 'updatePasswordStore')->name('admin.profile.updatePasswordStore');
+        Route::post('profile/update', 'store')->name('admin.profile.store');
     });
 });
 
