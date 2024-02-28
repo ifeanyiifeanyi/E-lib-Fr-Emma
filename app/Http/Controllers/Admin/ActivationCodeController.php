@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Models\ActivatedCode;
 use App\Models\ActivationCode;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ActivationCodeController extends Controller
 {
@@ -37,6 +38,38 @@ class ActivationCodeController extends Controller
 
         return redirect()->route('admin.activationCode.view')->with($notification);
     }
+
+
+    // public function codeDetails($serial_code){
+    //     $code = ActivationCode::where('serial_code', $serial_code)->first();
+
+    //     $user = User::where('pass_code', $code->code)->first();
+
+    //     return view('admin.accessCodes.show', [
+    //        'code' => $code,
+    //        'user' => $user
+    //     ]);
+    //     // return view('admin.accessCodes.show', compact('code'));
+    // }
+
+
+    public function codeDetails($serial_code) {
+
+        $code = ActivationCode::where('serial_code', $serial_code)->first();
+
+        $user = User::where('pass_code', $code->code)->first();
+
+        $activatedCode = null;
+
+        if($user) {
+          $activatedCode = ActivatedCode::where('code_id', $code->id)
+                                       ->orWhere('user_id', $user->id)
+                                       ->first();
+        }
+
+        return view('admin.accessCodes.show', compact('code', 'user', 'activatedCode'));
+
+      }
 
     public function destroy(String $serial_code){
         $code = ActivationCode::where('serial_code', $serial_code)->first();

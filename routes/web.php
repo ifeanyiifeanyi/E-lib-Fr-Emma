@@ -65,6 +65,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
         Route::get('create-new-code', 'create')->name('admin.activationCode.create');
         Route::post('create-new-code/store', 'store')->name('admin.activationCode.store');
         Route::get('create-new-code/delete/{code:serial_number}', 'destroy')->name('admin.activationCode.delete');
+
+        Route::get('view-code-details/{code:serial_code}', 'codeDetails')->name('admin.activationCode.details');
     });
 
     Route::controller(MembersManagementController::class)->group(function(){

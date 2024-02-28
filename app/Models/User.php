@@ -17,18 +17,18 @@ class User extends Authenticatable
         return $this->hasMany(ActivatedCode::class);
     }
 
+    // User.php
+
+
+    public function activationCode() {
+        return $this->hasOne(ActivationCode::class, 'code','pass_code');
+      }
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'photo',
-        'username',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
 
     /**

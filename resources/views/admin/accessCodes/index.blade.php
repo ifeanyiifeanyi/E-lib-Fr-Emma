@@ -48,7 +48,7 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="" class="btn btn-info"><i class="fas fa-eye"> View</i></a>
+                                                <a href="{{ route('admin.activationCode.details', ['code' => $code->serial_code]) }}" class="btn btn-info"><i class="fas fa-eye"> View</i></a>
 
                                                 @if($code->activations->isNotEmpty())
                                                     <span class="btn btn-success"><i class="fas fa-check"></i> Activated</span>
