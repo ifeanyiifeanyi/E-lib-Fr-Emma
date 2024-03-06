@@ -1,10 +1,8 @@
-<div class="row footer">
-    <div class="col-md-6 text-left">
-        Copyright © 2015 <a href="http://themeforest.net/user/bragher/portfolio" target="_blank">Bragher</a>
-        All rights reserved.
-    </div>
-    <div class="col-md-6 text-right">
-        Design and Developed by <a href="http://themeforest.net/user/bragher/portfolio"
-            target="_blank">Bragher</a>
-    </div>
-</div>
+<!--start overlay-->
+<div class="overlay toggle-icon"></div>
+<!--end overlay-->
+<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+<!--End Back To Top Button-->
+<footer class="page-footer">
+    <p class="mb-0">Copyright © 2024. All right reserved.</p>
+</footer>

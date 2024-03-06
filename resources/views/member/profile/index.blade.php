@@ -7,149 +7,143 @@
 
 
 @section('member')
+<div class="page-content">
+    <!--breadcrumb-->
+    <div class="mb-3 page-breadcrumb d-none d-sm-flex align-items-center">
+        <div class="breadcrumb-title pe-3">@yield('title')</div>
+        <div class="ps-3">
+            <nav aria-label="breadcrumb">
+                <ol class="p-0 mb-0 breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('member.dashboard') }}"><i
+                                class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">@yield('title')</li>
+                </ol>
+            </nav>
+        </div>
 
+    </div>
+    <!--end breadcrumb-->
+    <div class="container">
+        <div class="main-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center d-flex flex-column align-items-center">
+                                <img src="{{ asset(auth()->user()->photo) }}" alt="Admin"
+                                    class="p-1 rounded-circle bg-primary" width="110">
+                                <div class="mt-3">
+                                    <h4>{{ Str::title(Auth::user()->name) }}</h4>
+                                    <p class="mb-1 text-secondary">{{ Str::title(Auth::user()->username) }}</p>
+                                    <p class="text-muted font-size-sm">{{ Str::lower(Auth::user()->email) }}</p>
+                                    <p class="text-muted font-size-sm">{{ Str::lower(Auth::user()->phone) }}</p>
+                                    <p class="text-muted font-size-sm"> Activation Code: <b>{{
+                                            Str::lower(Auth::user()->pass_code == 0 ? 'N/A' : Auth::user()->pass_code)
+                                            }}</b></p>
+                                    <a href="{{ route('member.updatePassword.view') }}" class="btn btn-primary">Update
+                                        Password</a>
+                                </div>
+                            </div>
+                            <hr class="my-4" />
 
-    <!-- START CONTAINER -->
-    <div class="container-padding" style="margin-top: 50px">
-        <!-- Start Row -->
-        <div class="row mt-5">
-            <div class="col-md-12 col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-title">
-                        Update Profile Details
-                        <ul class="panel-tools">
-                            <li>
-                                <a class="icon minimise-tool"><i class="fa fa-minus"></i></a>
-                            </li>
-                            <li>
-                                <a class="icon expand-tool"><i class="fa fa-expand"></i></a>
-                            </li>
-                            <li>
-                                <a class="icon closed-tool"><i class="fa fa-times"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="panel-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="input1" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="input1" name="name"
-                                    value="{{ old('name', $user->name) }}" />
-                                @error('name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="input2" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="input2" name="username"
-                                    value="{{ old('username', $user->username) }}" />
-                                @error('username')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="input2" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="input2" name="email"
-                                    value="{{ old('email', $user->email) }}" />
-                                @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="input2" class="form-label">Phone NUmber</label>
-                                <input type="text" class="form-control" id="input2" name="phone"
-                                    value="{{ old('phone', $user->phone) }}" />
-                                @error('username')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-12 col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-title">
-                        Horizontal Form
-                        <ul class="panel-tools">
-                            <li>
-                                <a class="icon minimise-tool"><i class="fa fa-minus"></i></a>
-                            </li>
-                            <li>
-                                <a class="icon expand-tool"><i class="fa fa-expand"></i></a>
-                            </li>
-                            <li>
-                                <a class="icon closed-tool"><i class="fa fa-times"></i></a>
-                            </li>
-                        </ul>
+                <div class="col-lg-8">
+                    <form action="{{ route('member.profile.update') }}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-3 row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Full Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" value="{{ old('name', $user->name) }}"
+                                        name="name" />
+                                    @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Username</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" value="{{ old('username', $user->username) }}"
+                                        name="username" />
+                                    @error('username')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="email" class="form-control" value="{{ old('email', $user->email) }}"
+                                        name="email" />
+                                    @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Phone</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="tel" class="form-control" value="{{ old('phone', $user->phone) }}" name="phone" />
+                                    @error('phone')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Profile Photo</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input onChange="changeImg(this)" type="file" accept="image/*" capture class="form-control" name="photo" />
+                                </div>
+                                <div class="col-md-5">
+                                    <img id="previewImage"  src="{{ asset($user->photo) }}" alt="" class="img-fluid img-responsive w-50 img-thumbnail">
+                                </div>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="submit" class="px-4 btn btn-primary" value="Save Changes" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="panel-body">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label form-label">Name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input11" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label form-label">Surname</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label form-label">Password</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label form-label">Subject</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input122" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label form-label">Message</label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" rows="3"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10 checkbox checkbox-primary padding-l-35">
-                                    <input id="checkbox103" type="checkbox" checked />
-                                    <label for="checkbox103">Remember me</label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-default">
-                                        Submit
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                </form>
                 </div>
             </div>
         </div>
-        <!-- End Row -->
-
     </div>
-    <!-- END CONTAINER -->
+</div>
+
+
 @endsection
 
 @section('js')
 
+<script>
+    function changeImg(input) {
+        let preview = document.getElementById('previewImage');
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 @endsection

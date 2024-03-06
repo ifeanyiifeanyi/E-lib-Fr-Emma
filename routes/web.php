@@ -100,7 +100,9 @@ Route::prefix('member')->middleware(['auth', 'role:member'])->group(function () 
 
     Route::controller(MemberProfileController::class)->group(function () {
         Route::get('profile','index')->name('member.profile.view');
-        Route::get('profile/update-password','updatePassword')->name('member.updateDassword.view');
+        Route::get('profile/update-password','updatePassword')->name('member.updatePassword.view');
+        Route::post('update/profile', 'update')->name('member.profile.update');
+        Route::post('profile/update-password', 'updatePasswordStore')->name('member.updatePassword.store');
     });
 });
 
