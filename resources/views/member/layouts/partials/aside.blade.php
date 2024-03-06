@@ -37,8 +37,7 @@
         </li>
         <li><a href="widgets.html"><span class="icon color11"><i class="fa fa-diamond"></i></span>Widgets</a>
         </li>
-        <li><a href="calendar.html"><span class="icon color8"><i
-                        class="fa fa-calendar-o"></i></span>Calendar<span
+        <li><a href="calendar.html"><span class="icon color8"><i class="fa fa-calendar-o"></i></span>Calendar<span
                     class="label label-danger">NEW</span></a></li>
         <li><a href="typography.html"><span class="icon color12"><i class="fa fa-font"></i></span>Typography</a>
         </li>
@@ -59,24 +58,6 @@
         </li>
     </ul>
 
-    <ul class="sidebar-panel nav">
-        <li class="sidetitle">MORE</li>
-        <li><a href="grid.html"><span class="icon color15"><i class="fa fa-columns"></i></span>Grid System</a>
-        </li>
-        <li><a href="customizable.html"><span class="icon color10"><i
-                        class="fa fa-lightbulb-o"></i></span>Customizable</a></li>
-        <li><a href="helper-classes.html"><span class="icon color8"><i class="fa fa-code"></i></span>Helper
-                Classes</a></li>
-    </ul>
 
-    <div class="sidebar-plan">
-        Pro Plan<a href="#" class="link">Upgrade</a>
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                aria-valuemax="100" style="width: 60%;">
-            </div>
-        </div>
-        <span class="space">42 GB / 100 GB</span>
-    </div>
 
 </div>

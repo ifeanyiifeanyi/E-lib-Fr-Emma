@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\MembersManagementController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Member\DashboardController as MemberDashboardController;
+use App\Http\Controllers\Member\MemberProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -94,6 +95,12 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 Route::prefix('member')->middleware(['auth', 'role:member'])->group(function () {
     Route::controller(MemberDashboardController::class)->group(function () {
         Route::get('dashboard','dashboard')->name('member.dashboard');
+        Route::get('logout','logout')->name('member.logout');
+    });
+
+    Route::controller(MemberProfileController::class)->group(function () {
+        Route::get('profile','index')->name('member.profile.view');
+        Route::get('profile/update-password','updatePassword')->name('member.updateDassword.view');
     });
 });
 

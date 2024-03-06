@@ -2,77 +2,77 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description"
-    content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
-  <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
-  <title>{{ config('app.name') }} - @yield('title')</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
+    <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
+    <title>{{ config('app.name') }} - @yield('title')</title>
 
-  <!-- ========== Css Files ========== -->
-  <link href="{{ asset('') }}user/css/root.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-@yield('css')
+    <!-- ========== Css Files ========== -->
+    <link href="{{ asset('') }}user/css/root.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    @yield('css')
 
 </head>
 
 <body>
-  <!-- Start Page Loading -->
-  <div class="loading"><img src="{{ asset('') }}user/img/loading.gif" alt="loading-img"></div>
-  <!-- End Page Loading -->
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- Start Page Loading -->
+    <div class="loading"><img src="{{ asset('') }}user/img/loading.gif" alt="loading-img"></div>
+    <!-- End Page Loading -->
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
 
-  <!-- START TOP -->
-  @include('member.layouts.partials.header')
-  <!-- END TOP -->
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
-  @include('member.layouts.partials.aside')
+    <!-- START TOP -->
+    @include('member.layouts.partials.header')
+    <!-- END TOP -->
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+    @include('member.layouts.partials.aside')
 
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
-  <!-- START SIDEBAR -->
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- START SIDEBAR -->
 
-  <!-- END SIDEBAR -->
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
-
-
-
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
-  <!-- START CONTENT -->
-  <div class="content">
+    <!-- END SIDEBAR -->
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
 
 
 
     <!-- //////////////////////////////////////////////////////////////////////////// -->
-    <!-- START CONTAINER -->
-    <div class="container-widget">
+    <!-- START CONTENT -->
+    <div class="content">
 
 
-    @yield('member')
+
+        <!-- //////////////////////////////////////////////////////////////////////////// -->
+        <!-- START CONTAINER -->
+        <div class="container-widget">
+
+
+            @yield('member')
+
+
+        </div>
+        <!-- END CONTAINER -->
+        <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+        <!-- Start Footer -->
+        @include('member.layouts.partials.footer')
+        <!-- End Footer -->
 
 
     </div>
-    <!-- END CONTAINER -->
+    <!-- End Content -->
     <!-- //////////////////////////////////////////////////////////////////////////// -->
 
-    <!-- Start Footer -->
-    @include('member.layouts.partials.footer')
-    <!-- End Footer -->
 
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- START SIDEPANEL -->
+    @include('member.layouts.partials.rightBar')
+    <!-- END SIDEPANEL -->
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
 
-  </div>
-  <!-- End Content -->
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
+    @include('member.layouts.partials.scripts')
 
+</body>
 
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
-  <!-- START SIDEPANEL -->
-  @include('member.layouts.partials.rightBar')
-  <!-- END SIDEPANEL -->
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
-
-@include('member.layouts.partials.scripts')
-
-  </body>
-
-    </html>
+</html>
