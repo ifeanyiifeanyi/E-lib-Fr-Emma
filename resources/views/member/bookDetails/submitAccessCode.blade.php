@@ -29,8 +29,9 @@
             <div class="row">
                 
                 <div class="mx-auto col-md-8">
-                    <form action="" method="POST">
+                    <form action="{{ route('member.submitAccessCode.store') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="userId" value="{{ auth()->user()->id }}">
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3 row">
@@ -38,7 +39,7 @@
                                     <h6 class="mb-0">Activation Code</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="password" class="form-control" name="pass_code" />
+                                    <input type="text" class="form-control" name="pass_code" value="{{ old('pass_code') }}" />
                                     @error('pass_code')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -50,7 +51,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="password" class="form-control" name="password" />
-                                    <small class="text-muted">Account password request is to prove ownership of the account</small>
+                                    <small class="text-muted">Account password request is to prove ownership of the account</small><br>
                                     @error('password')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror

@@ -98,6 +98,7 @@ Route::prefix('member')->middleware(['auth', 'role:member'])->group(function () 
         Route::get('book-details/{slug}','bookDetails')->name('member.bookDetails.view');
         Route::get('/book/{slug}/file', 'file')->name('book.file');
         Route::get('submit-access-code', 'submitAccessCode')->name('member.submit.submitAccessCode');
+        Route::post('submit-access-code/store', 'submitAccessCodeStore')->name('member.submitAccessCode.store');
 
         Route::get('logout','logout')->name('member.logout');
     });

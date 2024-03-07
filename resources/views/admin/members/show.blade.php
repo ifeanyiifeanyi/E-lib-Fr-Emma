@@ -38,7 +38,7 @@
                             <li class="list-group-item">
                                 <b>Access Code </b>
                                 <a class="float-right">
-                                    @if ($user->pass_code == "null")
+                                    @if ($user->pass_code === 0)
                                     <code class="btn btn-danger shadow float-right" disabled>
                                         <i class="fa fa-ban" aria-hidden="true"></i>
                                         Book Access Denied
@@ -75,7 +75,7 @@
                             <a onclick="return confirm('Are you sure of this Action')" href="{{ route('admin.members.deactivate', ['member' => $user]) }}" class="btn btn-danger"><b>Deactivate Account</b></a>
                             @endif
 
-                            @if ($user->pass_code == "null")
+                            @if ($user->pass_code === 0)
                             <a href="{{ route('admin.members.setCode', ['member' => $user]) }}" class="btn btn-info"><b>Active Code for User Account</b></a>
                             @endif
                         </div>

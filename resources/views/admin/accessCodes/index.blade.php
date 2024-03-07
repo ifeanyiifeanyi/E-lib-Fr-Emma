@@ -37,7 +37,11 @@
                                 @forelse($codes as $code)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $code->code }}</td>
+                                        <td>
+                                            <code onclick="copyToClipboard('{{ $code->code }}')">
+                                                <i class="fas fa-copy text-info" title="Click to Copy"></i>   {{$code->code }}                                            
+                                            </co>
+                                        </td>
                                         <td>{{ $code->serial_code }}</td>
                                         <td>
                                             @if($code->status === 'activated')
@@ -83,6 +87,25 @@
 
 
 @section('js')
+<script>
+    function copyToClipboard(text) {
+
+            // Copy text
+            navigator.clipboard.writeText(text);
+
+            // Show confirmation
+            let copyConfirm = document.createElement('div');
+            copyConfirm.textContent = 'Copied!';
+            copyConfirm.classList.add('copy-confirm');
+            document.body.appendChild(copyConfirm);
+
+            // Hide after 1.5 secs
+            setTimeout(() => {
+                copyConfirm.remove();
+            }, 1500);
+
+        }
+</script>
 
 
 @endsection
