@@ -12,14 +12,11 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 mx-auto">
+            <div class="mx-auto col-md-12">
 
                 <div class="table-responsive">
-                    <a href="{{ route('admin.activationCode.create') }}"
-                        class="btn btn-outline-info  w-25 mt-3 mb-3 ml-2">Add
-                        <i class="fas fa-plus"></i></a>
-                    <div class="card-header mb-5">
-                        <h3 class="card-title">Details of all available Activation Codes</h3>
+                    <div class="mb-5 card-header">
+                        <h3 class="card-title">Details of all members</h3>
                     </div>
                     {{-- @if($books->count()) --}}
                     <div class="table-responsive">
@@ -55,7 +52,7 @@
                                     </td>
                                 </tr>
                                 @empty
-                                <p class="alert alert-danger text-center">Not Available</p>
+                                <p class="text-center alert alert-danger">Not Available</p>
                                 @endforelse
                             </tbody>
 

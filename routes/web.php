@@ -95,6 +95,9 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 Route::prefix('member')->middleware(['auth', 'role:member'])->group(function () {
     Route::controller(MemberDashboardController::class)->group(function () {
         Route::get('dashboard','dashboard')->name('member.dashboard');
+        Route::get('book-details/{slug}','bookDetails')->name('member.bookDetails.view');
+        Route::get('/book/{slug}/file', 'file')->name('book.file');
+
         Route::get('logout','logout')->name('member.logout');
     });
 
