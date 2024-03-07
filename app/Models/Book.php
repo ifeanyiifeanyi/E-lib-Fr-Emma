@@ -23,4 +23,20 @@ class Book extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function incrementViews()
+    {
+        $this->views = $this->views + 1;
+        $this->save();
+    }
+
+
+    public function readers()
+    {
+        return $this->hasMany(UserBook::class)->where('read', true);
+    }
+
+    public function viewers()
+    {
+        return $this->hasMany(UserBook::class);
+    }
 }

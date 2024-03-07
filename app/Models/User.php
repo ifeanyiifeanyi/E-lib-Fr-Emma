@@ -20,9 +20,20 @@ class User extends Authenticatable
     // User.php
 
 
-    public function activationCode() {
-        return $this->hasOne(ActivationCode::class, 'code','pass_code');
-      }
+    public function activationCode()
+    {
+        return $this->hasOne(ActivationCode::class, 'code', 'pass_code');
+    }
+
+    public function readBooks()
+    {
+        return $this->hasMany(UserBook::class)->where('read', true);
+    }
+
+    public function viewedBooks()
+    {
+        return $this->hasMany(UserBook::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

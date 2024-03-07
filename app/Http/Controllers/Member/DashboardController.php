@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Member;
 
 use App\Models\Book;
 use App\Models\User;
+use App\Models\UserBook;
 use Illuminate\Http\Request;
 use App\Models\ActivatedCode;
 use App\Models\ActivationCode;
@@ -38,9 +39,13 @@ class DashboardController extends Controller
 
     public function file($slug)
     {
+        $user = auth()->user();
         $book = Book::where('slug', $slug)->firstOrFail();
+        $book->incrementViews();
 
-        // $book->viewBook();
+        UserBook::updateOrCreate(
+            ['user_id' => $user->id, 'book_id' => $book->id, 'read' => true]
+        );
 
         return redirect($book->file_url);
     }

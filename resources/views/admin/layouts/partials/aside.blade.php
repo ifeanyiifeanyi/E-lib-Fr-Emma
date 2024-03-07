@@ -28,7 +28,7 @@ $route = Route::current()->getName();
                 <img src="{{ asset(auth()->user()->photo) }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Str::title(auth()->user()->name) }}</a>
+                <a href="{{ route('admin.profile.view') }}" class="d-block">{{ Str::title(auth()->user()->name) }}</a>
             </div>
         </div>
 
