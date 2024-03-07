@@ -97,6 +97,7 @@ Route::prefix('member')->middleware(['auth', 'role:member'])->group(function () 
         Route::get('dashboard','dashboard')->name('member.dashboard');
         Route::get('book-details/{slug}','bookDetails')->name('member.bookDetails.view');
         Route::get('/book/{slug}/file', 'file')->name('book.file');
+        Route::get('submit-access-code', 'submitAccessCode')->name('member.submit.submitAccessCode');
 
         Route::get('logout','logout')->name('member.logout');
     });

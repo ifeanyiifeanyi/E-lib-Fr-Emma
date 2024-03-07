@@ -25,6 +25,10 @@ class DashboardController extends Controller
         return view('member.bookDetails.bookDetails', compact('book', 'bookTags'));
     }
 
+    public function submitAccessCode(){
+        return view('member.bookDetails.submitAccessCode');
+    }
+
     public function file($slug) 
     {
         $book = Book::where('slug', $slug)->firstOrFail();
