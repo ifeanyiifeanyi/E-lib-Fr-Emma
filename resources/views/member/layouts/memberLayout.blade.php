@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="{{ asset("") }}user/assets/images/favicon-32x32.png" type="image/png" />
+	<link rel="icon" href="{{ asset("") }}logo.png" type="image/png" />
 	<!--plugins-->
 	<link href="{{ asset("") }}user/assets/plugins/notifications/css/lobibox.min.css" rel="stylesheet"/>
 	<link href="{{ asset("") }}user/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>

@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="{{ asset("") }}user/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+            <img src="{{ asset("") }}logo.png" class="logo-icon" alt="logo icon">
         </div>
         <div>
             <h5 class="logo-text">Dashboard</h5>
@@ -11,10 +11,8 @@
      </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
-       
-        
         <li>
-            <a href="user-profile.html">
+            <a href="{{ route('member.dashboard') }}">
                 <div class="parent-icon"><i class="bx bx-home-alt"></i>
                 </div>
                 <div class="menu-title">Books</div>
@@ -22,7 +20,7 @@
         </li>
         
         <li>
-            <a href="https://themeforest.net/user/codervent" target="_blank">
+            <a href="{{ route("member.profile.view") }}" target="_blank">
                 <div class="parent-icon"><i class="bx bx-support"></i>
                 </div>
                 <div class="menu-title">History</div>

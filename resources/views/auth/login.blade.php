@@ -26,10 +26,10 @@
                         <div class="card-body p-sm-5">
                             <div class="">
                                 <div class="mb-3 text-center">
-                                    <img src="assets/images/logo-icon.png" width="60" alt="">
+                                    <img src="{{asset('logo.png')}}" width="60" alt="">
                                 </div>
                                 <div class="mb-4 text-center">
-                                    <h5 class="">Admin Sign In</h5>
+                                    <h5 class="">Sign In</h5>
                                     <p class="mb-0">Please log in to your account</p>
                                 </div> @if(session('status'))
                                 <div class="mb-4 alert alert-danger">

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Member\DashboardController as MemberDashboardController;
 use App\Http\Controllers\Member\MemberProfileController;
+use App\Http\Controllers\Member\SearchController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -109,21 +110,11 @@ Route::prefix('member')->middleware(['auth', 'role:member'])->group(function () 
         Route::post('update/profile', 'update')->name('member.profile.update');
         Route::post('profile/update-password', 'updatePasswordStore')->name('member.updatePassword.store');
     });
+
+    Route::controller(SearchController::class)->group(function(){
+        Route::post('/search', 'search')->name('member.search.view'); // Corrected route definition
+    });
 });
 
-
-
-
-
-
-
-
-
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 require __DIR__.'/auth.php';

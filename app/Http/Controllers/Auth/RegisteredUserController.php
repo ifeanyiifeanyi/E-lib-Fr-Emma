@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -42,6 +43,8 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'photo' => 'https://placehold.co/600x400?text='.$request->username,
             'username' => $request->username,
+            'email_verified_at' => Carbon::now(), // come back and remove
+            'updated_at' => Carbon::now(),
             'password' => Hash::make($request->password),
         ]);
 

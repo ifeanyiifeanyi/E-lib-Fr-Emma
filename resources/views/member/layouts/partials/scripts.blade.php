@@ -40,4 +40,6 @@ break;
 }
 @endif
 </script>
+
+<script src="{{ asset('search.js') }}"></script>
 @yield('js')

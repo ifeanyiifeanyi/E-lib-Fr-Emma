@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin | @yield('title')</title>
+    <title>{{ config('app.name') }} | @yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('') }}admin/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('') }}admin/dist/css/adminlte.min.css">
-    <link rel="icon" href="{{ asset("") }}assets/images/favicon-32x32.png" type="image/png" />
+    <link rel="icon" href="{{ asset("") }}logo.png" type="image/png" />
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('') }}admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('') }}admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">

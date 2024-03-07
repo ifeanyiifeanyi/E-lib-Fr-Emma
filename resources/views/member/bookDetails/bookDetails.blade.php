@@ -98,9 +98,9 @@
         <div class="col">
             <div class="card">
                 <div class="row g-0">
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <div class="card-body">
-                            <h6 class="card-title">{{ $bkts->tag }}</h6>
+                            <h6 class="card-title text-center">{{ $bkts->tag }}</h6>
                         </div>
                     </div>
                 </div>

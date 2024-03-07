@@ -78,7 +78,7 @@
                         <p class="mb-3 text-dark">{{ Str::title($book->author) }}</p>
 
                         <div class="d-grid"> <a href="{{ route('member.bookDetails.view', $book->slug) }}"
-                                class="btn btn-info radius-15">Read</a>
+                                class="btn btn-info radius-15">View Details</a>
                         </div>
                     </div>
                 </div>
