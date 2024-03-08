@@ -20,7 +20,7 @@
         </li>
         
         <li>
-            <a href="{{ route("member.profile.view") }}" target="_blank">
+            <a href="{{ route("member.booksHistory.view") }}" target="_blank">
                 <div class="parent-icon"><i class="bx bx-support"></i>
                 </div>
                 <div class="menu-title">History</div>

@@ -10,15 +10,25 @@ use Illuminate\Support\Facades\Hash;
 
 class MemberProfileController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('member.profile.index', ['user' => auth()->user()]);
     }
-    public function create(){
+    public function create()
+    {
         return view('admin.profile.create');
     }
 
+    public function booksHistory()
+    {
+        $user = Auth::user();
+        $books = $user->viewedBooks;
+        return view('member.profile.bookHistory', compact('books'));
+    }
 
-    public function update(Request $request){
+
+    public function update(Request $request)
+    {
         $user = User::find(Auth::user()->id);
 
         $request->validate([
@@ -58,11 +68,13 @@ class MemberProfileController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function updatePassword(){
+    public function updatePassword()
+    {
         return view('member.profile.updateProfilePassword', ['user' => auth()->user()]);
     }
 
-    public function updatePasswordStore(Request $request){
+    public function updatePasswordStore(Request $request)
+    {
         $request->validate([
             'current_password' => ['required', 'current_password'],
             'password' => ['required', 'confirmed', 'different:current_password'],
@@ -70,7 +82,7 @@ class MemberProfileController extends Controller
 
         $user = User::find(Auth::user()->id);
 
-        if(Hash::check($user->password, $request->password)){
+        if (Hash::check($user->password, $request->password)) {
             return redirect()->back()->withErrors(['password' => 'New password cannot be the same as your current password']);
         }
         $user->password = Hash::make($request->password);

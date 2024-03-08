@@ -116,8 +116,8 @@
                         </div>
 
                         <h5 class="mt-5 text-muted">Book files</h5>
+                        <p class="mt-5 text-muted"><i class="fas fa-book"></i> Read <b class="text-info">{{ $book->views }}</b></p>
                         <ul class="list-unstyled">
-
                             <li>
                                 <a target="_blank" href="{{ url($book->file_url) }}" class="btn-link text-secondary"><i
                                         class="far fa-fw fa-file-pdf"></i>{{ $book->file_url }}</a>
