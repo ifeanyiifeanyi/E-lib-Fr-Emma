@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ActivationCodeController;
+use App\Http\Controllers\Admin\AdminMembersController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -89,6 +90,14 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
         Route::get('profile/reset-password', 'create')->name('admin.profile.updatePassword');
         Route::post('profile/update-password', 'updatePasswordStore')->name('admin.profile.updatePasswordStore');
         Route::post('profile/update', 'store')->name('admin.profile.store');
+    });
+
+    Route::controller(AdminMembersController::class)->group(function(){
+        Route::get('staff-members', 'index')->name('admin.staff.member');
+        Route::get('staff-members/create', 'create')->name('admin.staff.create');
+        Route::post('staff-members/store', 'store')->name('admin.staff.store');
+        Route::get('staff-members/{username}', 'view')->name('admin.staff.view');
+        Route::get('del-staff/{username}', 'delete')->name('admin.staff.delete');
     });
 });
 

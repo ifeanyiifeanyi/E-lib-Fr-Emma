@@ -15,8 +15,8 @@ $route = Route::current()->getName();
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('admin.dashboard') }}" class="brand-link">
-        <img src="{{ asset("") }}logo.png" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset("") }}logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">
         <span class="brand-text font-weight-light">Admin</span>
     </a>
 
@@ -31,24 +31,82 @@ $route = Route::current()->getName();
                 <a href="{{ route('admin.profile.view') }}" class="d-block">{{ Str::title(auth()->user()->name) }}</a>
             </div>
         </div>
-
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
+        @if (auth()->user()->super_access == '1')
+            <!-- SidebarSearch Form -->
+            <div class="form-inline">
+                <div class="input-group" data-widget="sidebar-search">
+                    <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-sidebar">
+                            <i class="fas fa-search fa-fw"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-
+        @endif
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+
+                @if (auth()->user()->super_access == '1')
+                <li class="nav-item {{ $route == 'admin.members.view' ? 'active shadow' : '' }}">
+                    <a href="{{ route('admin.members.view') }}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Manage Members
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-close">
+                    <a href="{{ route('admin.staff.member') }}" class="nav-link">
+                        <i class="nav-icon fas fa-check"></i>
+                        <p>
+                            Staff Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item {{ $route == 'admin.staff.member' ? 'active shadow' : '' }}">
+                            <a href="{{ route('admin.staff.member') }}" class="nav-link">
+                                <i class="fas fa-users nav-icon"></i>
+                                <p>Staff Members</p>
+                            </a>
+                        </li>
+                        <li class="nav-item  {{ $route == 'admin.staff.create' ? 'active shadow' : '' }}">
+                            <a href="{{ route('admin.staff.create') }}" class="nav-link">
+                                <i class="fas fa-briefcase nav-icon"></i>
+                                <p>Add new staff</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item menu-close">
+                    <a href="{{ route('admin.book.view') }}" class="nav-link">
+                        <i class="nav-icon fas fa-code-branch"></i>
+                        <p>
+                            Activation Code Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item {{ $route == 'admin.activationCode.view' ? 'active shadow' : '' }}">
+                            <a href="{{ route('admin.activationCode.view') }}" class="nav-link">
+                                <i class="fas fa-code nav-icon"></i>
+                                <p>Manage Codes</p>
+                            </a>
+                        </li>
+                        <li class="nav-item  {{ $route == 'admin.activationCode.create' ? 'active shadow' : '' }}">
+                            <a href="{{ route('admin.activationCode.create') }}" class="nav-link">
+                                <i class="fas fa-barcode nav-icon"></i>
+                                <p>Generate New Codes</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li style="border-bottom: 2px solid #fff"></li>
+                @endif
                 <li class="nav-item menu-close">
                     <a href="{{ route('admin.book.view') }}" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
@@ -73,38 +131,6 @@ $route = Route::current()->getName();
                     </ul>
                 </li>
 
-                <li class="nav-item menu-close">
-                    <a href="{{ route('admin.book.view') }}" class="nav-link">
-                        <i class="nav-icon fas fa-code-branch"></i>
-                        <p>
-                            Activation Code Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item {{ $route == 'admin.activationCode.view' ? 'active shadow' : '' }}">
-                            <a href="{{ route('admin.activationCode.view') }}" class="nav-link">
-                                <i class="fas fa-code nav-icon"></i>
-                                <p>Manage Codes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item  {{ $route == 'admin.activationCode.create' ? 'active shadow' : '' }}">
-                            <a href="{{ route('admin.activationCode.create') }}" class="nav-link">
-                                <i class="fas fa-barcode nav-icon"></i>
-                                <p>Generate New Codes</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item {{ $route == 'admin.members.view' ? 'active shadow' : '' }}">
-                    <a href="{{ route('admin.members.view') }}" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            Manage Members
-                        </p>
-                    </a>
-                </li>
                 <li class="nav-item {{ $route == 'admin.category.index' ? 'active shadow' : '' }}">
                     <a href="{{ route('admin.category.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-briefcase"></i>
@@ -139,7 +165,8 @@ $route = Route::current()->getName();
                 </li>
 
 
-                <li style="border: 1px solid teal" class="nav-item mb-3 mt-3 {{ $route == 'admin.profile.view' ? 'active' : '' }}">
+                <li style="border: 1px solid teal"
+                    class="nav-item mb-3 mt-3 {{ $route == 'admin.profile.view' ? 'active' : '' }}">
                     <a href="{{ route('admin.profile.view') }}" class="nav-link">
                         <i class="nav-icon fas fa-briefcase"></i>
                         <p>
