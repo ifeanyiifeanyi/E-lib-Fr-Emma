@@ -18,14 +18,14 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
-                            <img class="profile-user-img img-fluid w-50" src="{{ asset($user->photo) }}" alt="User profile picture">
+                            <img class="profile-user-img img-thumbnail img-fluid w-50" src="{{ asset($user->photo) }}" alt="User profile picture">
                         </div>
 
-                        <h3 class="profile-username text-center">{{ Str::title($user->name) }}</h3>
+                        <h3 class="text-center profile-username">{{ Str::title($user->name) }}</h3>
 
-                        <p class="text-muted text-center"><b>Role: </b> {{ Str::title($user->role) }}</p>
+                        <p class="text-center text-muted"><b>Role: </b> {{ Str::title($user->role) }}</p>
 
-                        <ul class="list-group list-group-unbordered mb-3">
+                        <ul class="mb-3 list-group list-group-unbordered">
                             <li class="list-group-item">
                                 <b>Username</b> <a class="float-right">{{ Str::lower($user->username) }}</a>
                             </li>
@@ -39,12 +39,12 @@
                                 <b>Access Code </b>
                                 <a class="float-right">
                                     @if ($user->pass_code === 0)
-                                    <code class="btn btn-danger shadow float-right" disabled>
+                                    <code class="float-right text-danger" disabled>
                                         <i class="fa fa-ban" aria-hidden="true"></i>
                                         Book Access Denied
                                     </code>
                                     @else
-                                    <code class="float-right btn btn-info">
+                                    <code class="float-right text-info">
                                         <i class="fa fa-code" aria-hidden="true"></i>
                                         {{ $user->pass_code }}
                                     </code>
@@ -54,12 +54,12 @@
                         </ul>
 
                         @if (!isset($user->email_verified_at))
-                        <code class="btn btn-danger btn-block" disabled>
+                        <code class="text-danger" disabled>
                             <i class="fa fa-ban" aria-hidden="true"></i>
                             <b>Unverified Account </b>
                         </code>
                         @else
-                        <code class="btn btn-success">
+                        <code class="text-success">
                             <b>
                                 <i class="fa fa-check-circle" aria-hidden="true"></i>
                                User Account Verified
@@ -97,10 +97,10 @@
                     <!-- /.card-header -->
                     @forelse ($user->viewedBooks as $userBook)
                     <div class="card-body">
-                        <strong><i class="fas fa-book mr-1"></i>{{ Str::title($userBook->book->title) }}</strong>
+                        <strong><i class="mr-1 fas fa-book"></i>{{ Str::title($userBook->book->title) }}</strong>
 
                         <p class="text-muted">
-                            <i class="far fa-clock mr-1"></i>
+                            <i class="mr-1 far fa-clock"></i>
                             {{ \Carbon\Carbon::parse($userBook->created_at)->format('jS F, Y') }}
                         </p>
                         <p class="text-muted">
@@ -110,7 +110,7 @@
                         <hr>
                     </div>    
                     @empty
-                        <div class="alert alert-primary">
+                        <div class="m-5 alert alert-info">
                             User has not read any book, for now
                         </div>
                     @endforelse
