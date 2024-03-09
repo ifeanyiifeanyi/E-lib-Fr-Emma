@@ -11,8 +11,9 @@ use Illuminate\Http\Request;
 
 class MembersManagementController extends Controller
 {
+
     public function index(){
-        $users = User::where('role', '!=', 'admin')->latest()->get();
+        $users = User::where('role', '!=', 'admin')->latest()->paginate(5);
         return view('admin.members.index', compact('users'));
     }
 
@@ -33,6 +34,28 @@ class MembersManagementController extends Controller
         );
 
         return redirect()->back()->with($notification);
+    }
+
+    public function makeRole($user){
+        $admin = auth()->user();
+        if ($admin->role == 'admin' && $admin->super_access == 1) {
+
+            $user = User::where('username', $user)->first();
+            $user->role = 'admin';
+            $user->updated_at = Carbon::now();
+            $user->save();
+            $notification = array(
+            'message' => 'User Staff Access Has Been Activated!!',
+                'alert-type' =>'success'
+            );
+            return redirect()->back()->with($notification);
+        }
+        $notification = [
+
+         'message' => 'You are not allowed to perform this action',
+             'alert-type' =>'error'
+         ];
+         return redirect()->back()->with($notification);
     }
 
     public function deactivate($user){

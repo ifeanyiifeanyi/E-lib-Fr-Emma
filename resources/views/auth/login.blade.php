@@ -61,10 +61,12 @@
                                                     id="inputChoosePassword" value="" placeholder="Enter Password"> <a
                                                     href="javascript:;" class="bg-transparent input-group-text"><i
                                                         class="bx bx-hide"></i></a>
-                                                @error('password')
-                                                <i class="text-danger">{{ $message }}</i>
-                                                @enderror
+
                                             </div>
+                                            @error('password')
+
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-check form-switch">

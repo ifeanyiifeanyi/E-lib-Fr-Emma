@@ -48,6 +48,8 @@
 
                                             <a onclick="return confirm('Are you sure')" href="{{ route('admin.members.delete', ['member' => $user]) }}"
                                                 class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                                            <a onclick="return confirm('Are you sure of this action ?')" href="{{ route('admin.staff.makeRole', $user->username) }}" class="btn btn-warning"><i class="fab fa-adn"
+                                                    aria-hidden="true"></i> Make Staff</a>
                                         </div>
                                     </td>
                                 </tr>

@@ -53,8 +53,101 @@ class AdminMembersController extends Controller
         return view('admin.adminMembers.adminUserProfile', compact('user'));
     }
 
+    public function denyAdmin($user){
+        // dd(Carbon::now());
+        $admin = auth()->user();
+        if ($admin->role == 'admin' && $admin->super_access == 1) {
+
+            $user = User::where('username', $user)->first();
+            $user->super_access = '0';
+            $user->updated_at = Carbon::now();
+            $user->save();
+            $notification = array(
+               'message' => 'User Admin Access Has Been Deactivated!!',
+                'alert-type' =>'success'
+            );
+    
+            return redirect()->back()->with($notification);
+        }
+        $notification = array(
+            'message' => 'You are not allowed to perform this action',
+             'alert-type' =>'error'
+         );
+ 
+         return redirect()->back()->with($notification);
+       
+    }
+
+    public function makeAdmin($user){
+        // dd(Carbon::now());
+        $admin = auth()->user();
+        if ($admin->role == 'admin' && $admin->super_access == 1) {
+
+            $user = User::where('username', $user)->first();
+            $user->super_access = '1';
+            $user->updated_at = Carbon::now();
+            $user->save();
+            $notification = array(
+              'message' => 'User Admin Access Has Been Activated!!',
+                'alert-type' =>'success'
+            );
+            return redirect()->back()->with($notification);
+
+        }
+        $notification = [
+
+           'message' => 'You are not allowed to perform this action',
+             'alert-type' =>'error'
+         ];
+         return redirect()->back()->with($notification);
+    }
+
+    public function denyRole($user){
+        $admin = auth()->user();
+        if ($admin->role === 'admin' && $admin->super_access == 1) {
+
+            $user = User::where('username', $user)->first();
+            $user->role = 'member';
+            $user->updated_at = Carbon::now();
+            $user->save();
+            $notification = array(
+              'message' => 'User Staff Access Has Been Activated!!',
+                'alert-type' =>'success'
+            );
+            return redirect()->back()->with($notification);
+        }
+        $notification = [
+
+           'message' => 'You are not allowed to perform this action',
+             'alert-type' =>'error'
+         ];
+         return redirect()->back()->with($notification);
+    }
+
+    public function makeRole($user){
+        $admin = auth()->user();
+        if ($admin->role == 'admin' && $admin->super_access == 1) {
+
+            $user = User::where('username', $user)->first();
+            $user->role = 'admin';
+            $user->updated_at = Carbon::now();
+            $user->save();
+            $notification = array(
+            'message' => 'User Staff Access Has Been Activated!!',
+                'alert-type' =>'success'
+            );
+            return redirect()->back()->with($notification);
+        }
+        $notification = [
+
+         'message' => 'You are not allowed to perform this action',
+             'alert-type' =>'error'
+         ];
+         return redirect()->back()->with($notification);
+    }
+
     public function delete($username){
-        $user = User::where('username', $username)->where('role', 'admin')->first();
+        $user = User::where('username', $username)->first();
 
         if($user->delete()){
             if (!empty($user->photo) && file_exists(public_path($user->photo))) {
