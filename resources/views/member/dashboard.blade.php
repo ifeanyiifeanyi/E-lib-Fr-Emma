@@ -66,6 +66,28 @@
     </div>
     <!--end row-->
 
+    <div class="mb-4 text-center">
+        <div class="d-flex flex-wrap">
+            @foreach ($categories as $category)
+            <a href="{{ route('book.by.category', $category->id) }}" class="btn btn-outline-secondary btn-sm rounded-pill mr-3 mb-2">
+                {{ $category->category }}
+            </a>
+            @endforeach
+
+            @foreach ($genres as $genre)
+            <a href="{{ route('book.by.genre', $genre->id) }}" class="btn btn-outline-secondary btn-sm rounded-pill mr-2 mb-2">
+                {{ $genre->genre }}
+            </a>
+            @endforeach
+
+            @foreach ($tags as $tag)
+            <a href="{{ route('book.by.tag', $tag->id) }}" class="btn btn-outline-secondary btn-sm rounded-pill mr-2 mb-2">
+                {{ $tag->tag }}
+            </a>
+            @endforeach
+        </div>
+    </div>
+
     <div class="pt-5 text-center row row-cols-1 row-cols-lg-2 row-cols-xl-4 mb-5">
         @forelse ($books as $book)
         <div class="col">
@@ -84,6 +106,7 @@
                 </div>
             </div>
         </div>
+
         @empty
         <div class="mx-auto col-md-7">
             <p class="text-center alert alert-danger">Not available</p>
@@ -91,6 +114,9 @@
         @endforelse
 
     </div>
+</div>
+<div class="d-flex justify-content-center pb-5 mb-5">
+    {{ $books->links() }}
 </div>
 @else
 <div class="container pt-5">
@@ -102,7 +128,8 @@
                 <h6 class="mb-0 text-white">Warning</h6>
                 <div class="text-white">Please Submit your <b>Activation code to as access library materials</b></div>
                 <div class="mt-3">
-                    <a href="{{ route('member.submit.submitAccessCode') }}" class="btn btn-light">Submit access code ..</a>
+                    <a href="{{ route('member.submit.submitAccessCode') }}" class="btn btn-light">Submit access code
+                        ..</a>
                 </div>
             </div>
         </div>

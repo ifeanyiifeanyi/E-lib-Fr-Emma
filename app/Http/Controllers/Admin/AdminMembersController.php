@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class AdminMembersController extends Controller
 {
     public function index(){
-        $admins = User::where('role', 'admin')->get();
+        $admins = User::where('role', 'admin')->simplePaginate(10);
         return view('admin.adminMembers.index', compact('admins')) ;
     }
 

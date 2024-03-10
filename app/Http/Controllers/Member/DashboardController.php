@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Member;
 
+use App\Models\Tag;
 use App\Models\Book;
 use App\Models\User;
+use App\Models\Genre;
+use App\Models\Category;
 use App\Models\UserBook;
 use Illuminate\Http\Request;
 use App\Models\ActivatedCode;
@@ -17,8 +20,11 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $books = Book::where('status', 'active')->orderBy('created_at', 'desc')->get();
-        return view("member.dashboard", compact('books'));
+        $books = Book::where('status', 'active')->orderBy('created_at', 'desc')->simplePaginate(20);
+        $categories = Category::latest()->inRandomOrder()->take(10)->get();
+        $genres = Genre::latest()->inRandomOrder()->take(10)->get();
+        $tags = Tag::latest()->inRandomOrder()->take(10)->get();
+        return view("member.dashboard", compact('books', 'categories', 'genres', 'tags'));
     }
 
     public function bookDetails($slug)
@@ -94,6 +100,35 @@ class DashboardController extends Controller
 
         return redirect()->route('member.dashboard')->with($notification);
     }
+
+
+
+    public function showByCategory($category){
+        $category = Category::findOrFail($category);
+        $books = $category->books;
+        return view('member.searchBy.searchByCategory', compact('books', 'category'));
+    }
+
+    public function showByGenre($genre){
+        $genre = Genre::findOrFail($genre);
+        $books = $genre->books()->simplePaginate(20);
+        return view('member.searchBy.searchByGenre', compact('books', 'genre'));
+    }
+
+
+    public function showByTag($tagId)
+    {
+        $tag = Tag::findOrFail($tagId);
+        $books = $tag->books;
+
+        return view('member.searchBy.searchByTag', compact('books', 'tag'));
+    }
+
+
+
+
+
+
 
     public function logout(Request $request): RedirectResponse
     {

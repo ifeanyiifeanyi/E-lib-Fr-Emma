@@ -60,6 +60,9 @@
 
                         </table>
                     </div>
+                    <div class="d-flex justify-content-center pb-5 mb-5">
+                        {{ $users->links() }}
+                    </div>
                     {{-- @else
                     <div class="alert alert-danger">No Code Available</div>
                     @endif --}}

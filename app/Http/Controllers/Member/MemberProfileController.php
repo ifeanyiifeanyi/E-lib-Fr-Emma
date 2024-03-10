@@ -22,7 +22,7 @@ class MemberProfileController extends Controller
     public function booksHistory()
     {
         $user = Auth::user();
-        $books = $user->viewedBooks;
+        $books = $user->viewedBooks()->simplePaginate(10); 
         return view('member.profile.bookHistory', compact('books'));
     }
 

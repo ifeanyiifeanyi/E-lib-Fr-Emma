@@ -13,7 +13,7 @@ class MembersManagementController extends Controller
 {
 
     public function index(){
-        $users = User::where('role', '!=', 'admin')->latest()->paginate(5);
+        $users = User::where('role', '!=', 'admin')->latest()->simplePaginate(2);
         return view('admin.members.index', compact('users'));
     }
 
